@@ -7,7 +7,17 @@ import java.io.File;
 import java.util.ArrayList;
 
 import org.jnetpcap.Pcap;
+import org.jnetpcap.PcapHeader;
 import org.jnetpcap.PcapIf;
+import org.jnetpcap.nio.JBuffer;
+import org.jnetpcap.nio.JMemory;
+import org.jnetpcap.packet.JRegistry;
+import org.jnetpcap.packet.Payload;
+import org.jnetpcap.packet.PcapPacket;
+import org.jnetpcap.packet.format.FormatUtils;
+import org.jnetpcap.protocol.lan.Ethernet;
+import org.jnetpcap.protocol.network.Ip4;
+import org.jnetpcap.protocol.tcpip.Udp;
 
 public class PacketCaptureTestDrive {
 	
@@ -41,9 +51,12 @@ public class PacketCaptureTestDrive {
 	private void doStart() {
 		
 		findNetworkAdaptorList();
+		capturePacket(3);
+		
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	private void findNetworkAdaptorList() {
 		
 		// Initialize variables
@@ -71,6 +84,82 @@ public class PacketCaptureTestDrive {
 		}
 	}
 
-	
+	private void capturePacket(int a_DeviceNumber) {
+		// Select Device
+		PcapIf l_ThisDevice = fDeviceList.get(a_DeviceNumber);
+		System.out.println("You choose " + l_ThisDevice.getDescription());
+		
+		
+		// Set initial info
+		int l_snapLen 	= 64*1024; //65536Byte 캡쳐
+		int l_flags 	= Pcap.MODE_NON_PROMISCUOUS;// 무차별 모드
+		int l_timeOut   = 10*1000;// 10 seconds
+		
+		// get pcap
+		StringBuilder 	l_errBuf  	= new StringBuilder();
+		Pcap 			l_aPcap		= Pcap.openLive(l_ThisDevice.getName(), l_snapLen, l_flags, l_timeOut, l_errBuf);
+		
+		
+		
+		// Decoding Setup
+		Ethernet 	l_ethernet 	= new Ethernet();
+		Ip4			l_ipv4		= new Ip4();
+		Udp 		l_udp		= new Udp();
+		Payload		l_payload	= new Payload();
+		PcapHeader 	l_header 	= new PcapHeader(JMemory.POINTER);
+		JBuffer		l_buffer	= new JBuffer(JMemory.POINTER);		
+		int 		l_id		= JRegistry.mapDLTToId(l_aPcap.datalink()); // Data Link 유형
+		
+		while(l_aPcap.nextEx(l_header,l_buffer) == l_aPcap.NEXT_EX_NOT_OK) {
+			// Extract Packet from PCAP
+			PcapPacket	packet	= new PcapPacket(l_header,l_buffer);
+			
+			packet.scan(l_id);// 새로운 패킷을 스캔하여, 헤더를 찾는다.
+			System.out.println("--------------------------------");
+			System.out.println(packet.getFrameNumber());
+			System.out.println("--------------------------------");
+			
+			
+			if(packet.hasHeader(l_udp)) { // UDP 헤더를 가지고 있다면
+				System.out.println("출발지 : " + l_udp.source()+ "     목적지 : " + l_udp.destination());
+			}
+			if(packet.hasHeader(l_payload)) { // Payload 헤더를 가지고 있다면
+				System.out.print(l_payload.toHexdump());
+			}
+			
+		}
+		
+		
+		
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
