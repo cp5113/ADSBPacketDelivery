@@ -5,5 +5,6 @@
  * @author hp
  *
  */
-module ADSBPacketDelivery {
+class ADSBPacketDelivery {
+	
 }
