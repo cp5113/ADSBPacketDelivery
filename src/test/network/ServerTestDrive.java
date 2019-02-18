@@ -40,8 +40,10 @@ public class ServerTestDrive {
 			
 			// Waiting Signal
 			while(true) {
+				System.out.println("Waiting Client...");
 				Socket l_socket = server.accept(); // waiting
 				// create Thread and Run
+				System.out.println("Someone comes in!!");				
 				ConnectionThread l_newClient = new ConnectionThread(l_socket, fClientList);
 				l_newClient.start();
 				
@@ -78,6 +80,12 @@ public class ServerTestDrive {
 				
 				System.out.println("=======================");
 				System.out.println(fClientInfo + " Connected");
+				System.out.println(fSocket.getInetAddress());
+				System.out.println(fSocket.getChannel());
+				System.out.println(fSocket.getLocalAddress());
+				System.out.println(fSocket.getLocalSocketAddress());
+				System.out.println(fSocket.getRemoteSocketAddress());
+				
 				
 			}catch(Exception e) {
 				
@@ -92,6 +100,9 @@ public class ServerTestDrive {
 				
 				while((l_aline = fBr.readLine()) != null) {
 					System.out.println("Data : " + l_aline);
+					
+					
+					
 				}
 				
 				
