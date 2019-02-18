@@ -31,7 +31,7 @@ public class PackageCapture {
 				e.printStackTrace();
 			}
 		}
-		PcapIf device = alldevs.get(3); // Get first device in list
+		PcapIf device = alldevs.get(1); // Get first device in list
 		System.out.printf("\nChoosing '%s' on your behalf:\n",
 				(device.getDescription() != null) ? device.getDescription()
 						: device.getName());
@@ -62,6 +62,7 @@ public class PackageCapture {
 				System.out.println("srcIP=" + sourceIP + 
 						" dstIP=" + destinationIP + 
 						" caplen=" + packet.getCaptureHeader().caplen());
+//				System.out.println(org.jnetpcap.packet.format.FormatUtils.hexLineData(data, data.length));
 			}
 		};
 		// capture first 10 packages
