@@ -109,7 +109,7 @@ public class PacketCaptureTestDrive {
 		
 		// Decoding Setup
 		Ethernet 	l_ethernet 	= new Ethernet();
-		Ip4			l_ipv4		= new Ip4();
+		Ip4			l_ipv4		= new Ip4();		
 		Udp 		l_udp		= new Udp();
 		Tcp 		l_tcp		= new Tcp();
 		Payload		l_payload	= new Payload();
@@ -126,9 +126,12 @@ public class PacketCaptureTestDrive {
 			System.out.println(packet.getFrameNumber());
 			System.out.println("--------------------------------");
 			
+			if(packet.hasHeader(l_ipv4)) { // ip 헤더를 가지고 있다면
+				System.out.println("출발지 : " + FormatUtils.ip(l_ipv4.source())+ "     목적지 : " + FormatUtils.ip(l_ipv4.destination()));
+			}
 			
-			if(packet.hasHeader(l_tcp)) { // UDP 헤더를 가지고 있다면
-				System.out.println("출발지 : " + l_tcp.source()+ "     목적지 : " + l_tcp.destination());
+			if(packet.hasHeader(l_tcp)) { // tcp 헤더를 가지고 있다면
+				System.out.println("출발지 Port : " + l_tcp.source()+ "     목적지 Port : " + l_tcp.destination());
 			}
 			if(packet.hasHeader(l_payload)) { // Payload 헤더를 가지고 있다면
 				System.out.print(l_payload.toHexdump());
