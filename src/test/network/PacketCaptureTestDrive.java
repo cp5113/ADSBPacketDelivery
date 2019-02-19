@@ -52,7 +52,7 @@ public class PacketCaptureTestDrive {
 	private void doStart() {
 		
 		findNetworkAdaptorList();
-		capturePacket(0);
+		capturePacket(5);
 		
 	}
 	
@@ -90,6 +90,7 @@ public class PacketCaptureTestDrive {
 		PcapIf l_ThisDevice = fDeviceList.get(a_DeviceNumber);
 		System.out.println("You choose " + l_ThisDevice.getDescription());
 		
+
 		
 		// Set initial info
 		int l_snapLen 	= 64*1024; //65536Byte 캡쳐
@@ -116,7 +117,7 @@ public class PacketCaptureTestDrive {
 		JBuffer		l_buffer	= new JBuffer(JMemory.POINTER);		
 		int 		l_id		= JRegistry.mapDLTToId(l_aPcap.datalink()); // Data Link 유형
 		
-		while(l_aPcap.nextEx(l_header,l_buffer) == Pcap.NEXT_EX_NOT_OK) {
+		while(l_aPcap.nextEx(l_header,l_buffer) == Pcap.NEXT_EX_OK) {
 			// Extract Packet from PCAP
 			PcapPacket	packet	= new PcapPacket(l_header,l_buffer);
 			
@@ -129,9 +130,9 @@ public class PacketCaptureTestDrive {
 			if(packet.hasHeader(l_tcp)) { // UDP 헤더를 가지고 있다면
 				System.out.println("출발지 : " + l_tcp.source()+ "     목적지 : " + l_tcp.destination());
 			}
-//			if(packet.hasHeader(l_payload)) { // Payload 헤더를 가지고 있다면
-//				System.out.print(l_payload.toHexdump());
-//			}
+			if(packet.hasHeader(l_payload)) { // Payload 헤더를 가지고 있다면
+				System.out.print(l_payload.toHexdump());
+			}
 			
 		}
 		
@@ -140,6 +141,60 @@ public class PacketCaptureTestDrive {
 	}
 	
 }
+
+
+
+
+//Backup
+//// Set initial info
+//StringBuilder 	l_errbuf 	= new StringBuilder();
+//int 			l_snaplen 	= 64 * 1024; //65536Byte
+//int 			l_flags 	= Pcap.MODE_NON_PROMISCUOUS; // 무차별모드
+//int 			l_timeout 	= 10 *1000; // 10second
+//Pcap 			l_pcap 		= Pcap.openLive(l_ThisDevice.getName(), l_snaplen, l_flags, l_timeout, l_errbuf);
+//				
+//
+//// Decoding Setup
+//Ethernet 	ethernet 	= new Ethernet();
+//Ip4 		ip 			= new Ip4();
+//Tcp 		tcp 		= new Tcp();
+//Udp			udp			= new Udp();
+//Payload 	payload 	= new Payload();
+//PcapHeader 	header 		= new PcapHeader(JMemory.POINTER);
+//JBuffer 	buf 		= new JBuffer(JMemory.POINTER);
+//
+//int 		id          = JRegistry.mapDLTToId(l_pcap.datalink());	// pcap의 datalink 유형을 jNetPcap의 프로토콜 ID에 맵핑
+//
+//while(l_pcap.nextEx(header, buf) == Pcap.NEXT_EX_OK) // 헤더와 버퍼를 피어링
+//{
+//	PcapPacket packet = new PcapPacket(header, buf);
+//	
+//	packet.scan(id); //새로운 패킷을 스캔하여 포함 된 헤더를 찾습니다
+//	System.out.printf("[ #%d ]\n", packet.getFrameNumber());
+//	System.out.println("##################################### Packet #####################################");
+//	if (packet.hasHeader(ethernet)) {
+//		System.out.printf("출발지 MAC 주소 = %s\n도착지 MAC 주소 = %s\n", 
+//				FormatUtils.mac(ethernet.source()), FormatUtils.mac(ethernet.destination()));
+//	}
+//	if (packet.hasHeader(ip)) {
+//		System.out.printf("출발지 IP 주소 = %s\n도착지 IP 주소 = %s\n", 
+//				FormatUtils.ip(ip.source()), FormatUtils.ip(ip.destination()));
+//	}
+//	if (packet.hasHeader(tcp)) {
+//		System.out.printf("출발지 TCP 주소 = %d\n도착지 TCP 주소 = %d\n", 
+//				tcp.source(), tcp.destination());
+//	}
+//	if (packet.hasHeader(payload)) {
+//		System.out.printf("페이로드의 길이 = %d\n", payload.getLength()); 
+//		System.out.print(payload.toHexdump());	// 와이어샤크에서 보이는 hexdump를 출력
+//	}
+//}
+//l_pcap.close();
+//
+//
+//
+
+
 
 
 
