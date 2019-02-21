@@ -1,6 +1,7 @@
-package json.sample;
+package json;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,20 +9,30 @@ import java.util.Date;
 
 public class JsonParserSJ {
 
-	public static void parsingJsonWithDelaredFieldsInClass(Object aObject,StringBuilder aJSONStringBuilder) {
+	public static Object[] parsingJsonWithDelaredFieldsInClass(Class aClass,StringBuilder aJSONStringBuilder) {
 		
 		// Parse line by line
 		String[] l_aLine = aJSONStringBuilder.toString().split("\\n");
+		if(l_aLine.length<1) {
+			return null;
+		}
 		
 		// Parse Json line by line
+		Object[] objectArray = new Object[l_aLine.length];
 		for(int l_loopLine = 0; l_loopLine < l_aLine.length; l_loopLine++) {
-			parsingJsonWithDelaredFieldsInClass(aObject, l_aLine[l_loopLine]);
+			try {
+				objectArray[l_loopLine] = parsingJsonWithDelaredFieldsInClass(aClass.getConstructor().newInstance(), l_aLine[l_loopLine]);
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}//for(int l_loopLine = 0; l_loopLine < l_aLine.length; l_loopLine++) {
 		
-		
+		return objectArray;
 	}
 	
-	public static void  parsingJsonWithDelaredFieldsInClass(Object aObject, String aJSONStringAnAircraft) {
+	public static Object  parsingJsonWithDelaredFieldsInClass(Object aObject, String aJSONStringAnAircraft) {
 		// Get Declared Fields
 		Field[] l_fields = aObject.getClass().getDeclaredFields();
 		
@@ -62,9 +73,10 @@ public class JsonParserSJ {
 			setField(aObject, l_fields[l_loopFields].getName(), l_fields[l_loopFields].getType().toString(), l_dataInField);
 //			System.out.println(l_fields[l_loopFields].);
 			
-						
 			
-		}// for(int l_loopFields = 0; l_loopFields < l_fields.length;l_loopFields++) {		
+		}// for(int l_loopFields = 0; l_loopFields < l_fields.length;l_loopFields++) {
+		
+		return aObject;
 	}
 	
 	private static synchronized void setField(Object aObject, String aFieldName, String aFieldType, String aInputData) {

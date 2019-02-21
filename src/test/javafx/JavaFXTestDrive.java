@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import test.javafx.view.AircraftTableViewController;
+import test.javafx.view.JavaFXController;
 
 public class JavaFXTestDrive extends Application {
 
@@ -25,7 +25,7 @@ public class JavaFXTestDrive extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("SJ Program");
+		this.primaryStage.setTitle("ADS-b Delivery");
 		initRootLayout();
 	}
 	private void initRootLayout() {
@@ -35,9 +35,11 @@ public class JavaFXTestDrive extends Application {
             loader.setLocation(JavaFXTestDrive.class.getResource("view/JavaFXTestDrive.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            AircraftTableViewController contoller = loader.getController();
-            System.out.println(this);
+            // Add Controller
+            JavaFXController contoller = loader.getController();            
             contoller.setController(this);
+            
+      
             
             // 상위 레이아웃을 포함하는 scene을 보여준다.
             Scene scene = new Scene(rootLayout);

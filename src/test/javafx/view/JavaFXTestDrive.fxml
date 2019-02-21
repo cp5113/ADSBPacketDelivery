@@ -19,12 +19,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.javafx.view.AircraftTableViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.javafx.view.JavaFXController">
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="358.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="178.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.0" minWidth="10.0" prefWidth="530.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="187.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints />
@@ -50,22 +50,22 @@
       </GridPane>
    </bottom>
    <center>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.375" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TabPane layoutX="-1.0" prefHeight="168.0" prefWidth="536.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane layoutX="-1.0" prefHeight="168.0" prefWidth="727.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="JSON Delivery">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="663.0">
                                  <children>
-                                    <TextField layoutX="116.0" layoutY="27.0" prefHeight="26.0" prefWidth="92.0" text="25.12.56.47" />
+                                    <TextField layoutX="116.0" layoutY="27.0" prefHeight="26.0" prefWidth="107.0" text="25.12.56.47" />
                                     <Text layoutX="23.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination IP : " />
-                                    <TextField layoutX="116.0" layoutY="59.0" prefHeight="26.0" prefWidth="92.0" text="5152" />
+                                    <TextField layoutX="116.0" layoutY="57.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
                                     <Text layoutX="23.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
-                                    <ToggleButton layoutX="245.0" layoutY="29.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="Receving Data" />
-                                    <ToggleButton layoutX="377.0" layoutY="29.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="Sending Data" />
+                                    <ToggleButton layoutX="386.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#clickReceiveButton" prefHeight="61.0" prefWidth="110.0" text="Receving Data" />
+                                    <ToggleButton layoutX="518.0" layoutY="23.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="Sending Data" />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -81,17 +81,17 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <ScrollPane layoutY="-9.0" prefHeight="178.0" prefWidth="556.0">
+                  <ScrollPane layoutY="-9.0" prefHeight="222.0" prefWidth="727.0">
                      <content>
-                        <TableView fx:id="aircraftTable" prefHeight="172.0" prefWidth="544.0">
+                        <TableView fx:id="aircraftTable" prefHeight="220.0" prefWidth="723.0">
                           <columns>
-                            <TableColumn fx:id="column1" prefWidth="75.0" text="Time" />
-                            <TableColumn fx:id="column2" prefWidth="75.0" text="ICAO24" />
-                              <TableColumn fx:id="column3" prefWidth="75.0" text="Flight ID" />
-                              <TableColumn fx:id="column4" prefWidth="75.0" text="Latitude" />
-                              <TableColumn fx:id="column5" prefWidth="75.0" text="Longitude" />
-                              <TableColumn fx:id="column6" prefWidth="75.0" text="Altitude" />
-                              <TableColumn fx:id="column7" prefWidth="75.0" text="Speed" />
+                            <TableColumn fx:id="column1" prefWidth="176.0" sortType="DESCENDING" text="Time" />
+                            <TableColumn fx:id="column2" prefWidth="98.0" text="ICAO24" />
+                              <TableColumn fx:id="column3" prefWidth="91.0" text="Flight ID" />
+                              <TableColumn fx:id="column4" prefWidth="110.0" text="Latitude" />
+                              <TableColumn fx:id="column5" prefWidth="96.0" text="Longitude" />
+                              <TableColumn fx:id="column6" minWidth="1.0" prefWidth="83.0" text="Altitude" />
+                              <TableColumn fx:id="column7" prefWidth="63.0" text="Speed" />
                           </columns>
                         </TableView>
                      </content>

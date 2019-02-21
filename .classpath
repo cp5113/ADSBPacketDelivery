@@ -7,15 +7,11 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/hp/git/ADSBPacketDelivery/Lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre-10.0.2">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="jpcap-0.01.16-win32/jars/dev-classes_net.ultrametrics-0.03.jar"/>
 	<classpathentry kind="lib" path="jpcap-0.01.16-win32/jars/fooware_CommandLine-1.0.jar"/>
 	<classpathentry kind="lib" path="jpcap-0.01.16-win32/jars/javadoc_net.sourceforge.jpcap-0.01.16.jar"/>
 	<classpathentry kind="lib" path="jpcap-0.01.16-win32/jars/net.sourceforge.jpcap-0.01.16.jar"/>
 	<classpathentry kind="lib" path="jnetpcap-1.4.r1425/jnetpcap.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre-10.0.2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

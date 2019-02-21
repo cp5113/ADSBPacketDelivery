@@ -13,7 +13,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import json.sample.ADSBSAMPLEJson;
-import json.sample.JsonParserSJ;
+import json.sample.JsonParserSJTestDrive;
 
 import java.lang.module.ModuleDescriptor.Exports.Modifier;
 import java.lang.reflect.Field;
@@ -73,7 +73,7 @@ public class Aircraft {
 	
 	
 	public Aircraft(String aJson) {
-		JsonParserSJ.parsingJsonWithDelaredFieldsInClass(this,aJson);
+		JsonParserSJTestDrive.parsingJsonWithDelaredFieldsInClass(this,aJson);
 	}
 	
 	public Aircraft(Date dat, String hex, String fli, double lat, double lon, int alt, short spd) {
@@ -101,12 +101,12 @@ public class Aircraft {
 
 	
 	@SuppressWarnings("unused")
-//	public static void main(String args[]) {
-//		
+	public static void main(String args[]) {
+		
 //		ADSBSAMPLEJson data = new ADSBSAMPLEJson();
 //		Aircraft a 			= new Aircraft("[{\\\"uti\\\":1550623903,\\\"dat\\\":\\\"2019-02-20 00:51:43.690854937\\\",\\\"tim\\\":\\\"00:51:43.690854937\\\",\\\"hex\\\":\\\"71C325\\\",\\\"fli\\\":\\\"\\\",\\\"lat\\\":\\\"36.76435\\\",\\\"lon\\\":\\\"127.24049\\\",\\\"gda\\\":\\\"A\\\",\\\"src\\\":\\\"A\\\",\\\"alt\\\":9700,\\\"spd\\\":313,\\\"trk\\\":50,\\\"cat\\\":\\\"\\\",\\\"org\\\":\\\"\\\",\\\"dst\\\":\\\"\\\",\\\"opr\\\":\\\"\\\",\\\"typ\\\":\\\"\\\",\\\"reg\\\":\\\"\\\",\\\"dis\\\":\\\"98.5\\\",\\\"dbm\\\":-93,\\\"cou\\\":\\\"SKor\\\",\\\"squ\\\":\\\"7210\\\",\\\"tru\\\":23,\\\"tsa\\\":2,\\\"tsm\\\":0,\\\"vrt\\\":-576,\\\"lla\\\":1},\\r\\n\"");
 //		
-//	}
+	}
 	
 
 	public synchronized int getUti() {
