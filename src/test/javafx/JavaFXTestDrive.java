@@ -36,7 +36,7 @@ public class JavaFXTestDrive extends Application {
             rootLayout = (BorderPane) loader.load();
 
             // Add Controller
-            JavaFXController contoller = loader.getController();            
+            JavaFXController  contoller = loader.getController();            
             contoller.setController(this);
             
       

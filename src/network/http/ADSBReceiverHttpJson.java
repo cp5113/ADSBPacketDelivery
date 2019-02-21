@@ -5,16 +5,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 import elements.Aircraft;
+import javafx.collections.ObservableList;
 import json.JsonParserSJ;
 
 public class ADSBReceiverHttpJson {
 
-	private final String 	fUrlHttpJson 					= "http://192.168.10.10/aircraftlist.json";
-	private static boolean	fProcessRun	 					= true;
-	private static double	fReciveRate  					= 1;
-	private static volatile ADSBReceiverHttpJson instance	= new ADSBReceiverHttpJson();
+	private final static String 	fUrlHttpJson 					= "http://192.168.10.10/aircraftlist.json";
+	private static boolean			fProcessRun	 					= true;
+	private static double			fReciveRate  					= 1;
+	private static volatile ADSBReceiverHttpJson instance			= new ADSBReceiverHttpJson();
 	
 	private ADSBReceiverHttpJson() {
 	
@@ -28,6 +31,7 @@ public class ADSBReceiverHttpJson {
 	}
 	
 	public static Object receiveADSBJson() {
+		receiveADSBJson(fUrlHttpJson);
 		return null;
 		
 	}
@@ -54,8 +58,7 @@ public class ADSBReceiverHttpJson {
 				// Parsing Json
 				Aircraft[] aircraftArray = (Aircraft[])JsonParserSJ.parsingJsonWithDelaredFieldsInClass(Aircraft.class, l_AllData);
 				
-				
-				
+		
 				// Sleep
 				Thread.sleep((long) (fReciveRate*1000));
 			} catch (Exception e) {
