@@ -15,7 +15,6 @@ import javafx.beans.property.StringProperty;
 import json.sample.ADSBSAMPLEJson;
 import json.sample.JsonParserSJTestDrive;
 
-import java.lang.module.ModuleDescriptor.Exports.Modifier;
 import java.lang.reflect.Field;
 
 public class Aircraft {
