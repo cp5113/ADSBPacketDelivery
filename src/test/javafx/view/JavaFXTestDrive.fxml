@@ -19,8 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.javafx.view.AircraftTableViewController">
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -84,15 +83,15 @@
                <children>
                   <ScrollPane layoutY="-9.0" prefHeight="178.0" prefWidth="556.0">
                      <content>
-                        <TableView prefHeight="172.0" prefWidth="544.0">
+                        <TableView fx:id="aircraftTable" prefHeight="172.0" prefWidth="544.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Time" />
-                            <TableColumn prefWidth="75.0" text="ICAO24" />
-                              <TableColumn prefWidth="75.0" text="Flight ID" />
-                              <TableColumn prefWidth="75.0" text="Latitude" />
-                              <TableColumn prefWidth="75.0" text="Longitude" />
-                              <TableColumn prefWidth="75.0" text="Altitude" />
-                              <TableColumn prefWidth="75.0" text="Speed" />
+                            <TableColumn fx:id="column1" prefWidth="75.0" text="Time" />
+                            <TableColumn fx:id="column2" prefWidth="75.0" text="ICAO24" />
+                              <TableColumn fx:id="column3" prefWidth="75.0" text="Flight ID" />
+                              <TableColumn fx:id="column4" prefWidth="75.0" text="Latitude" />
+                              <TableColumn fx:id="column5" prefWidth="75.0" text="Longitude" />
+                              <TableColumn fx:id="column6" prefWidth="75.0" text="Altitude" />
+                              <TableColumn fx:id="column7" prefWidth="75.0" text="Speed" />
                           </columns>
                         </TableView>
                      </content>
