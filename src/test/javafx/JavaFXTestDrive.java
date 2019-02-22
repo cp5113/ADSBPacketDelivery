@@ -61,7 +61,7 @@ public class JavaFXTestDrive extends Application {
 		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
 		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
 		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
-		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
+		aircraftObservableList.add(new Aircraft(new Date(),"WWW","WW",3.2,1.4,10,(short) 20));
 		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
 	}
 	

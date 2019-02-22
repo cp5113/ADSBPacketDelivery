@@ -56,7 +56,7 @@ public class JsonParserSJ {
 			int l_endIndex1   = aJSONStringAnAircraft.substring(l_startIndex, aJSONStringAnAircraft.length()).indexOf(searchPattern2);
 			int l_endIndex2   = aJSONStringAnAircraft.substring(l_startIndex, aJSONStringAnAircraft.length()).indexOf(searchPattern3);
 			int l_endIndex    = l_startIndex;
-			if(l_endIndex1<=l_endIndex2) {
+			if(l_endIndex1<=l_endIndex2 && l_endIndex1>0) {
 				l_endIndex = l_endIndex1;
 			}else {
 				l_endIndex = l_endIndex2;
@@ -65,6 +65,8 @@ public class JsonParserSJ {
 			
 			// Extract Data
 			String l_dataInField = aJSONStringAnAircraft.substring(l_startIndex, l_startIndex+l_endIndex);
+
+			String bakcup = l_dataInField;
 			l_dataInField = l_dataInField.replaceAll("\\\\", "");
 			l_dataInField = l_dataInField.replaceAll("\"", "");
 //			l_dataInField        = l_dataInField.replaceAll("\\", "");
@@ -90,15 +92,35 @@ public class JsonParserSJ {
 			
 			
 			if(aFieldType.equalsIgnoreCase("short")) {
-				field.set(aObject, Short.parseShort(aInputData));				
+				if(aInputData.length()==0) {
+					field.set(aObject, Short.parseShort("0"));
+				}else {
+					field.set(aObject, Short.parseShort(aInputData));
+				}								
 			}else if(aFieldType.equalsIgnoreCase("int")) {
-				field.set(aObject, Integer.parseInt(aInputData));
+				if(aInputData.length()==0) {
+					field.set(aObject, Integer.parseInt("0"));
+				}else {
+					field.set(aObject, Integer.parseInt(aInputData));
+				}				
 			}else if(aFieldType.equalsIgnoreCase("long")) {
-				field.set(aObject, Long.parseLong(aInputData));
+				if(aInputData.length()==0) {
+					field.set(aObject, Long.parseLong("0"));
+				}else {
+					field.set(aObject, Long.parseLong(aInputData));
+				}				
 			}else if(aFieldType.equalsIgnoreCase("double")) {
-				field.set(aObject, Double.parseDouble(aInputData));
+				if(aInputData.length()==0) {
+					field.set(aObject, Double.parseDouble("0"));
+				}else {
+					field.set(aObject, Double.parseDouble(aInputData));
+				}	
 			}else if(aFieldType.equalsIgnoreCase("float")) {
-				field.set(aObject, Float.parseFloat(aInputData));
+				if(aInputData.length()==0) {
+					field.set(aObject, Float.parseFloat("0"));
+				}else {
+					field.set(aObject, Float.parseFloat(aInputData));
+				}	
 			}else if(aFieldType.equalsIgnoreCase("class java.lang.String")) {
 				field.set(aObject, aInputData);
 			}else if(aFieldType.equalsIgnoreCase("class java.util.Date")) {

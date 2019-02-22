@@ -60,6 +60,7 @@ public class Aircraft {
 	private int					lpa; // LastPacket_Age* Age of last ADS-B or Mode-S packet in sec optional
 	private int					tsa; // Track Size ADS-B internal
 	private int					tsm=1; // Track Size MLAT internal
+	private int					isNew=1; // new==1 or old==0
 	
 	// for JavaFX
 	private	ObjectProperty<Date>	datProperty;
@@ -100,12 +101,12 @@ public class Aircraft {
 
 	
 	@SuppressWarnings("unused")
-	public static void main(String args[]) {
-		
-//		ADSBSAMPLEJson data = new ADSBSAMPLEJson();
-//		Aircraft a 			= new Aircraft("[{\\\"uti\\\":1550623903,\\\"dat\\\":\\\"2019-02-20 00:51:43.690854937\\\",\\\"tim\\\":\\\"00:51:43.690854937\\\",\\\"hex\\\":\\\"71C325\\\",\\\"fli\\\":\\\"\\\",\\\"lat\\\":\\\"36.76435\\\",\\\"lon\\\":\\\"127.24049\\\",\\\"gda\\\":\\\"A\\\",\\\"src\\\":\\\"A\\\",\\\"alt\\\":9700,\\\"spd\\\":313,\\\"trk\\\":50,\\\"cat\\\":\\\"\\\",\\\"org\\\":\\\"\\\",\\\"dst\\\":\\\"\\\",\\\"opr\\\":\\\"\\\",\\\"typ\\\":\\\"\\\",\\\"reg\\\":\\\"\\\",\\\"dis\\\":\\\"98.5\\\",\\\"dbm\\\":-93,\\\"cou\\\":\\\"SKor\\\",\\\"squ\\\":\\\"7210\\\",\\\"tru\\\":23,\\\"tsa\\\":2,\\\"tsm\\\":0,\\\"vrt\\\":-576,\\\"lla\\\":1},\\r\\n\"");
+//	public static void main(String args[]) {
 //		
-	}
+////		ADSBSAMPLEJson data = new ADSBSAMPLEJson();
+////		Aircraft a 			= new Aircraft("[{\\\"uti\\\":1550623903,\\\"dat\\\":\\\"2019-02-20 00:51:43.690854937\\\",\\\"tim\\\":\\\"00:51:43.690854937\\\",\\\"hex\\\":\\\"71C325\\\",\\\"fli\\\":\\\"\\\",\\\"lat\\\":\\\"36.76435\\\",\\\"lon\\\":\\\"127.24049\\\",\\\"gda\\\":\\\"A\\\",\\\"src\\\":\\\"A\\\",\\\"alt\\\":9700,\\\"spd\\\":313,\\\"trk\\\":50,\\\"cat\\\":\\\"\\\",\\\"org\\\":\\\"\\\",\\\"dst\\\":\\\"\\\",\\\"opr\\\":\\\"\\\",\\\"typ\\\":\\\"\\\",\\\"reg\\\":\\\"\\\",\\\"dis\\\":\\\"98.5\\\",\\\"dbm\\\":-93,\\\"cou\\\":\\\"SKor\\\",\\\"squ\\\":\\\"7210\\\",\\\"tru\\\":23,\\\"tsa\\\":2,\\\"tsm\\\":0,\\\"vrt\\\":-576,\\\"lla\\\":1},\\r\\n\"");
+////		
+//	}
 	
 
 	public synchronized int getUti() {
@@ -508,6 +509,11 @@ public class Aircraft {
 		this.tsm = tsm;
 	}
 	
-	
+	public synchronized void setIsNew(int a) {
+		this.isNew = a;
+	}
+	public synchronized int getIsNew() {
+		return isNew;
+	}
 	
 }
