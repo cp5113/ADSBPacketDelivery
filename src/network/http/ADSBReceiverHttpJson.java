@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,7 +19,7 @@ import json.JsonParserSJ;
 
 public class ADSBReceiverHttpJson {
 
-	private final static String 					fUrlHttpJson 		= "http://25.12.56.47/aircraftList.json";
+	private final static String 					fUrlHttpJson 		= "http://192.168.10.10/aircraftlist.json";
 	private static boolean							fProcessRun	 		= false;
 	private static double							fReciveRate  		= 1;
 	private static Map<String,Aircraft>				fAircraftListMap	= new HashMap<String,Aircraft>();
@@ -115,7 +116,7 @@ public class ADSBReceiverHttpJson {
 					}
 					
 					// Remove Old Trajectory over 10 seconds
-					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>10);
+					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
 					
 					// Insert AircraftList to Tableviewer
 					if(fAircraftTableView!=null) {
