@@ -50,7 +50,7 @@ public class JavaFXController{
 		
 		/**
 		 * Connect column with Aircraft Table
-		 */
+		 */		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 		column1.setCellValueFactory(cellData -> new SimpleStringProperty(df.format(cellData.getValue().getDat())));
 		column2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHex()));
@@ -65,14 +65,12 @@ public class JavaFXController{
 	            @Override
 	            protected void updateItem(String item, boolean empty) {
 	                super.updateItem(item, empty);
-	                System.out.println(item);
 	                setText(empty ? "" : getItem().toString());
 	                setGraphic(null);
 	                TableRow<Aircraft> currentRow = getTableRow();	                	                
 	                if (!isEmpty()) {
-	                	
 	                    if(item.equals("1")) {
-	                    	currentRow.setStyle("-fx-background-color:lightcoral");
+	                    	currentRow.setStyle("-fx-background-color:lightcyan ");
 	                    }else {
 	                    	currentRow.setStyle("");
 	                    }	                    

@@ -85,14 +85,14 @@
                      <content>
                         <TableView fx:id="aircraftTableView" prefHeight="439.0" prefWidth="723.0">
                           <columns>
-                            <TableColumn fx:id="column1" editable="false" prefWidth="176.0" sortable="false" text="Time" />
-                            <TableColumn fx:id="column2" editable="false" prefWidth="98.0" sortable="false" text="ICAO24" />
+                            <TableColumn fx:id="column1" editable="false" prefWidth="167.0" sortable="false" text="Time" />
+                            <TableColumn fx:id="column2" editable="false" prefWidth="107.0" sortable="false" text="ICAO24" />
                               <TableColumn fx:id="column3" editable="false" prefWidth="91.0" sortable="false" text="Flight ID" />
                               <TableColumn fx:id="column4" editable="false" prefWidth="110.0" sortable="false" text="Latitude" />
                               <TableColumn fx:id="column5" editable="false" prefWidth="96.0" sortable="false" text="Longitude" />
-                              <TableColumn fx:id="column6" editable="false" minWidth="1.0" prefWidth="83.0" sortable="false" text="Altitude" />
-                              <TableColumn fx:id="column7" editable="false" prefWidth="63.0" sortable="false" text="Speed" />
-                              <TableColumn fx:id="column8" editable="false" prefWidth="75.0" sortable="false" text="isNew" visible="false" />
+                              <TableColumn fx:id="column6" editable="false" minWidth="1.0" prefWidth="81.0" sortable="false" text="Altitude" />
+                              <TableColumn fx:id="column7" editable="false" prefWidth="64.0" sortable="false" text="Speed" />
+                              <TableColumn fx:id="column8" editable="false" maxWidth="37.0" minWidth="0.0" prefWidth="0.0" sortable="false" text="isNew" />
                           </columns>
                         </TableView>
                      </content>

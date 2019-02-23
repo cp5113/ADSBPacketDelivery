@@ -19,7 +19,7 @@ import json.JsonParserSJ;
 
 public class ADSBReceiverHttpJson {
 
-	private final static String 					fUrlHttpJson 		= "http://192.168.10.10/aircraftlist.json";
+	private final static String 					fUrlHttpJson 		= "http://25.12.56.47/aircraftList.json";
 	private static boolean							fProcessRun	 		= false;
 	private static double							fReciveRate  		= 1;
 	private static Map<String,Aircraft>				fAircraftListMap	= new HashMap<String,Aircraft>();
@@ -116,7 +116,7 @@ public class ADSBReceiverHttpJson {
 					}
 					
 					// Remove Old Trajectory over 10 seconds
-					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
+//					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
 					
 					// Insert AircraftList to Tableviewer
 					if(fAircraftTableView!=null) {
@@ -134,7 +134,10 @@ public class ADSBReceiverHttpJson {
 					Thread.sleep((long) (fReciveRate*1000));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					fAircraftListMap.put("000000", new Aircraft(new Date(),"NoData","Check Internet Connection",0,0,0,(short) 0));
+					ObservableList<Aircraft> l_aircraftListView =  FXCollections.observableArrayList();
+					l_aircraftListView.add(fAircraftListMap.get(0));
+					fAircraftTableView.setItems(l_aircraftListView);
 				}
 
 			} // while(true) {

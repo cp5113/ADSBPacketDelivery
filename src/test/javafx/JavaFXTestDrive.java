@@ -58,11 +58,7 @@ public class JavaFXTestDrive extends Application {
 	public JavaFXTestDrive() {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");		
-		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
-		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
-		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
-		aircraftObservableList.add(new Aircraft(new Date(),"WWW","WW",3.2,1.4,10,(short) 20));
-		aircraftObservableList.add(new Aircraft(new Date(),"WW","WW",3.2,1.4,10,(short) 20));
+		aircraftObservableList.add(new Aircraft(new Date(),"Initial","Initial",0,0,0,(short) 0));
 	}
 	
     public ObservableList<Aircraft> getAircraftObservableList() {
