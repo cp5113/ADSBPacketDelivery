@@ -15,9 +15,14 @@ import javafx.beans.property.StringProperty;
 import json.sample.ADSBSAMPLEJson;
 import json.sample.JsonParserSJTestDrive;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
-public class Aircraft {
+public class Aircraft implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long 	serialVersionUID = 1L;
 	private int 				uti; // Linux timestamp of last message "uti":1435477011
 	private	Date				dat; // ESRI formatted timestamp of last message "dat":"2015-07-26 07:36:51.657189000"
 	private	Date				tim; // Time of last message (contains nanoseconds) "tim":"07:36:51.657189000""
@@ -62,15 +67,7 @@ public class Aircraft {
 	private int					tsm=1; // Track Size MLAT internal
 	private int					isNew=1; // new==1 or old==0
 	
-	// for JavaFX
-	private	ObjectProperty<Date>	datProperty;
-	private StringProperty		hexProperty;
-	private StringProperty		fliProperty;
-	private DoubleProperty		latProperty;
-	private DoubleProperty		lonProperty;
-	private IntegerProperty		altProperty;
-	private ObjectProperty<Short>	spdProperty;
-	
+
 	
 	public Aircraft(String aJson) {
 		JsonParserSJTestDrive.parsingJsonWithDelaredFieldsInClass(this,aJson);
@@ -85,13 +82,7 @@ public class Aircraft {
 		this.lon = lon;
 		this.alt = alt;
 		this.spd = spd;
-		this.datProperty = new SimpleObjectProperty<Date>(dat);
-		this.hexProperty = new SimpleStringProperty(hex);
-		this.fliProperty = new SimpleStringProperty(fli);
-		this.latProperty = new SimpleDoubleProperty(lat);
-		this.lonProperty = new SimpleDoubleProperty(lon);
-		this.altProperty = new SimpleIntegerProperty(alt);
-		this.spdProperty = new SimpleObjectProperty<Short>(spd);
+	
 	}
 
 	public Aircraft() {
@@ -113,61 +104,7 @@ public class Aircraft {
 		return uti;
 	}
 
-	public synchronized ObjectProperty<Date> getDatProperty() {
-		return datProperty;
-	}
 
-	public synchronized void setDatProperty(ObjectProperty<Date> datProperty) {
-		this.datProperty = datProperty;
-	}
-
-	public synchronized StringProperty getHexProperty() {
-		return hexProperty;
-	}
-
-	public synchronized void setHexProperty(StringProperty hexProperty) {
-		this.hexProperty = hexProperty;
-	}
-
-	public synchronized StringProperty getFliProperty() {
-		return fliProperty;
-	}
-
-	public synchronized void setFliProperty(StringProperty fliProperty) {
-		this.fliProperty = fliProperty;
-	}
-
-	public synchronized DoubleProperty getLatProperty() {
-		return latProperty;
-	}
-
-	public synchronized void setLatProperty(DoubleProperty latProperty) {
-		this.latProperty = latProperty;
-	}
-
-	public synchronized DoubleProperty getLonProperty() {
-		return lonProperty;
-	}
-
-	public synchronized void setLonProperty(DoubleProperty lonProperty) {
-		this.lonProperty = lonProperty;
-	}
-
-	public synchronized IntegerProperty getAltProperty() {
-		return altProperty;
-	}
-
-	public synchronized void setAltProperty(IntegerProperty altProperty) {
-		this.altProperty = altProperty;
-	}
-
-	public synchronized ObjectProperty<Short> getSpdProperty() {
-		return spdProperty;
-	}
-
-	public synchronized void setSpdProperty(ObjectProperty<Short> spdProperty) {
-		this.spdProperty = spdProperty;
-	}
 
 	public synchronized void setUti(int uti) {
 		this.uti = uti;
@@ -177,10 +114,7 @@ public class Aircraft {
 		return dat;
 	}
 
-	public synchronized void setDat(Date dat) {
-		this.dat = dat;
-		this.datProperty = new SimpleObjectProperty<Date>(dat);
-	}
+	
 
 	public synchronized Date getTim() {
 		return tim;
@@ -194,39 +128,22 @@ public class Aircraft {
 		return hex;
 	}
 
-	public synchronized void setHex(String hex) {
-
-		this.hexProperty = new SimpleStringProperty(hex);
-		this.hex = hex;
-	}
-
+	
 	public synchronized String getFli() {
 		return fli;
 	}
 
-	public synchronized void setFli(String fli) {
-		this.fli = fli;
-		this.fliProperty = new SimpleStringProperty(fli);
-	}
-
+	
 	public synchronized double getLat() {
 		return lat;
 	}
 
-	public synchronized void setLat(double lat) {
-		this.lat = lat;
-		this.latProperty = new SimpleDoubleProperty(lat);
-	}
-
+	
 	public synchronized double getLon() {
 		return lon;
 	}
 
-	public synchronized void setLon(double lon) {		
-		this.lon = lon;
-		this.lonProperty = new SimpleDoubleProperty(lon);		
-	}
-
+	
 	public synchronized String getGda() {
 		return gda;
 	}
@@ -247,20 +164,13 @@ public class Aircraft {
 		return alt;
 	}
 
-	public synchronized void setAlt(int alt) {
-		this.alt = alt;
-		this.altProperty = new SimpleIntegerProperty(alt);
-	}
+
 
 	public synchronized short getSpd() {
 		return spd;
 	}
 
-	public synchronized void setSpd(short spd) {
-		this.spd = spd;
-		this.spdProperty = new SimpleObjectProperty<Short>(spd);
-	}
-
+	
 	public synchronized short getTrk() {
 		return trk;
 	}
@@ -516,4 +426,8 @@ public class Aircraft {
 		return isNew;
 	}
 	
+	public String toString() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return df.format(dat)+","+hex+","+fli+","+lat+","+lon+","+alt;
+	}
 }

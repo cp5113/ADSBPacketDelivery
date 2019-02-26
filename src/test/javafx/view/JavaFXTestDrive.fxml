@@ -50,29 +50,36 @@
       </GridPane>
    </bottom>
    <center>
-      <SplitPane dividerPositions="0.375" orientation="VERTICAL" prefHeight="579.0" prefWidth="599.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.24956672443674177" orientation="VERTICAL" prefHeight="579.0" prefWidth="599.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="725.0">
+          <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="111.0" prefWidth="725.0">
                <children>
-                  <TabPane layoutX="-1.0" prefHeight="135.0" prefWidth="727.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane layoutX="-1.0" prefHeight="113.0" prefWidth="727.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="JSON Delivery">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="51.0" prefWidth="727.0">
                                  <children>
-                                    <TextField layoutX="116.0" layoutY="27.0" prefHeight="26.0" prefWidth="107.0" text="25.12.56.47" />
-                                    <Text layoutX="23.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination IP : " />
-                                    <TextField layoutX="116.0" layoutY="57.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
-                                    <Text layoutX="23.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
-                                    <ToggleButton layoutX="385.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#clickReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
-                                    <ToggleButton layoutX="518.0" layoutY="23.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="Sending Data" />
+                                    <TextField fx:id="JsonDestinationIP" layoutX="107.0" layoutY="48.0" prefHeight="26.0" prefWidth="107.0" text="25.12.56.47" />
+                                    <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination IP : " />
+                                    <TextField fx:id="JsonDestinationPort" layoutX="263.0" layoutY="49.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
+                                    <Text layoutX="228.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
+                                    <ToggleButton layoutX="487.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#clickDeliveryReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
+                                    <ToggleButton fx:id="DeliverySendingButton" layoutX="603.0" layoutY="12.0" mnemonicParsing="false" onAction="#clickDeliverySendingButton" prefHeight="61.0" prefWidth="110.0" text="Sending Data" />
+                                    <TextField fx:id="JsonSourceAddr" layoutX="106.0" layoutY="16.0" prefHeight="26.0" prefWidth="270.0" text="http://192.168.10.10/aircraftlist.json" />
+                                    <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Addr : " />
                                  </children>
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="TBD">
+                      <Tab text="JSON Reciever">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.0" prefWidth="727.0" />
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.0" prefWidth="727.0">
+                                 <children>
+                                    <TextField fx:id="JsonReceiverPort" layoutX="49.0" layoutY="30.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
+                                    <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
+                                    <ToggleButton layoutX="174.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#clickReceiverReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
+                                 </children></AnchorPane>
                         </content>
                       </Tab>
                     </tabs>

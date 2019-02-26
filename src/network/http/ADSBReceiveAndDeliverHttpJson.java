@@ -3,6 +3,9 @@ package network.http;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
@@ -15,24 +18,28 @@ import elements.Aircraft;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleButton;
 import json.JsonParserSJ;
 
-public class ADSBReceiverHttpJson {
+public class ADSBReceiveAndDeliverHttpJson {
 
-	private final static String 					fUrlHttpJson 		= "http://25.12.56.47/aircraftList.json";
-	private static boolean							fProcessRun	 		= false;
-	private static double							fReciveRate  		= 1;
-	private static Map<String,Aircraft>				fAircraftListMap	= new HashMap<String,Aircraft>();
-	private static volatile ADSBReceiverHttpJson 	instance			= new ADSBReceiverHttpJson();
-	private TableView<Aircraft> 					fAircraftTableView;
+	private static String 										fUrlHttpJson 		= "http://25.12.56.47/aircraftList.json";
+	private static boolean										fProcessRun	 		= false;
+	private static boolean										fJsonSending 		= false;
+	private static double										fReciveRate  		= 1;
+	private static Map<String,Aircraft>							fAircraftListMap	= new HashMap<String,Aircraft>();
+	private static volatile ADSBReceiveAndDeliverHttpJson 		instance			= new ADSBReceiveAndDeliverHttpJson();
+	private static ObjectOutputStream							fJsonSendingStream  = null;
+	private static ToggleButton									fDeliverySendingButton;
+	private TableView<Aircraft> 								fAircraftTableView;
 	
-	private ADSBReceiverHttpJson() {
+	private ADSBReceiveAndDeliverHttpJson() {
 	
 	}
 	
-	public static ADSBReceiverHttpJson getInstance() {
+	public static ADSBReceiveAndDeliverHttpJson getInstance() {
 		if(instance==null) {
-			instance = new ADSBReceiverHttpJson();
+			instance = new ADSBReceiveAndDeliverHttpJson();
 		}
 		return instance;
 	}
@@ -46,6 +53,18 @@ public class ADSBReceiverHttpJson {
 		receiveADSBJson(fUrlHttpJson);		
 	}
 	
+	public void receiveADSBJson(TableView<Aircraft> aAircraftTableView, String aUrl) {
+		fAircraftTableView = aAircraftTableView;
+		fUrlHttpJson	   = aUrl;
+		receiveADSBJson(fUrlHttpJson);		
+	}
+	
+	public void receiveADSBJson(TableView<Aircraft> aAircraftTableView,ToggleButton aDeliverySendingButton, String aUrl) {
+		fAircraftTableView = aAircraftTableView;
+		fUrlHttpJson	   = aUrl;
+		fDeliverySendingButton = aDeliverySendingButton;
+		receiveADSBJson(fUrlHttpJson);		
+	}
 	public void receiveADSBJson(String aUrl) {		
 		receiveProcess(aUrl);
 	}
@@ -105,6 +124,10 @@ public class ADSBReceiverHttpJson {
 								// New trajectory
 								fAircraftListMap.put(l_loopKey, l_aircraftList.get(l_loopKey));
 								fAircraftListMap.get(l_loopKey).setIsNew(1);
+								if(fJsonSending) {
+									fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
+									fJsonSendingStream.flush();
+								}
 							}else{
 								// Old trajectory
 							}						
@@ -112,11 +135,15 @@ public class ADSBReceiverHttpJson {
 							// New trajectory
 							fAircraftListMap.put(l_loopKey, l_aircraftList.get(l_loopKey));
 							fAircraftListMap.get(l_loopKey).setIsNew(1);
+							if(fJsonSending) {
+								fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
+								fJsonSendingStream.flush();
+							}
 						}
 					}
 					
 					// Remove Old Trajectory over 10 seconds
-//					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
+					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
 					
 					// Insert AircraftList to Tableviewer
 					if(fAircraftTableView!=null) {
@@ -132,7 +159,10 @@ public class ADSBReceiverHttpJson {
 					
 					// Sleep
 					Thread.sleep((long) (fReciveRate*1000));
-				} catch (Exception e) {
+				}catch(SocketException e) {
+					System.out.println("Socket Lost in Delivery Client");
+					fDeliverySendingButton.fire();
+				}catch (Exception e) {
 					// TODO Auto-generated catch block
 					fAircraftListMap.put("000000", new Aircraft(new Date(),"NoData","Check Internet Connection",0,0,0,(short) 0));
 					ObservableList<Aircraft> l_aircraftListView =  FXCollections.observableArrayList();
@@ -152,9 +182,27 @@ public class ADSBReceiverHttpJson {
 	public static synchronized boolean isProcessRun() {
 		return fProcessRun;
 	}
+	
+	public static synchronized void setProcessRun(boolean aProcessRun) {
+		ADSBReceiveAndDeliverHttpJson.fProcessRun = aProcessRun;
+	}
+	
+	public static synchronized boolean isJsonSending() {
+		return fJsonSending;
+	}
+	
+	public static synchronized void setJsonSending(boolean aJsonSending) {
+		ADSBReceiveAndDeliverHttpJson.fJsonSending = aJsonSending;
+	}
+	
+	
 
-	public static synchronized void setProcessRun(boolean fProcessRun) {
-		ADSBReceiverHttpJson.fProcessRun = fProcessRun;
+	public static synchronized ObjectOutputStream getfJsonSendingStream() {
+		return fJsonSendingStream;
+	}
+
+	public static synchronized void setfJsonSendingStream(ObjectOutputStream aJsonSendingStream) {
+		ADSBReceiveAndDeliverHttpJson.fJsonSendingStream = aJsonSendingStream;
 	}
 
 	public static synchronized double getReciveRate() {
@@ -162,7 +210,7 @@ public class ADSBReceiverHttpJson {
 	}
 
 	public static synchronized void setReciveRate(double fReciveRate) {
-		ADSBReceiverHttpJson.fReciveRate = fReciveRate;
+		ADSBReceiveAndDeliverHttpJson.fReciveRate = fReciveRate;
 	}
 
 	public static synchronized Map<String, Aircraft> getAircraftListMap() {
@@ -170,7 +218,7 @@ public class ADSBReceiverHttpJson {
 	}
 
 	public static synchronized void setAircraftListMap(Map<String, Aircraft> fAircraftListMap) {
-		ADSBReceiverHttpJson.fAircraftListMap = fAircraftListMap;
+		ADSBReceiveAndDeliverHttpJson.fAircraftListMap = fAircraftListMap;
 	}
 	
 //	public static void main(String args[]) {
