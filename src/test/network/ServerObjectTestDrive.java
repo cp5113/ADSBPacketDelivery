@@ -11,8 +11,6 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 import elements.Aircraft;
 
 public class ServerObjectTestDrive {
