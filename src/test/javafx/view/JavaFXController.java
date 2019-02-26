@@ -2,7 +2,9 @@ package test.javafx.view;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -139,7 +141,9 @@ public class JavaFXController{
 			ADSBReceiveAndDeliverHttpJson.setJsonSending(true);
 			// Connect to server
 			try {
-				DeliveryclinetSocket = new Socket(JsonDestinationIP.getText(), Integer.parseInt(JsonDestinationPort.getText()));
+				SocketAddress l_socketAddress = new InetSocketAddress(JsonDestinationIP.getText(), Integer.parseInt(JsonDestinationPort.getText()));
+				DeliveryclinetSocket = new Socket();
+				DeliveryclinetSocket.connect(l_socketAddress,100);
 //				l_ClinetSocket.getOutputStream()''
 				ObjectOutputStream l_objectOutputStream = new ObjectOutputStream(DeliveryclinetSocket.getOutputStream());
 				ADSBReceiveAndDeliverHttpJson.setfJsonSendingStream(l_objectOutputStream);
