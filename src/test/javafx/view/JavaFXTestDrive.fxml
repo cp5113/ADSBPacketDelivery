@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="610.0" maxWidth="727.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.javafx.view.JavaFXController">
+<BorderPane maxHeight="1900.0" maxWidth="727.0" minHeight="600.0" minWidth="-Infinity" prefHeight="600.0" prefWidth="727.0" stylesheets="@rootStyle.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.javafx.view.JavaFXController">
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -50,24 +50,24 @@
       </GridPane>
    </bottom>
    <center>
-      <SplitPane dividerPositions="0.24956672443674177" orientation="VERTICAL" prefHeight="579.0" prefWidth="599.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.24956672443674177" orientation="VERTICAL" prefWidth="599.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="111.0" prefWidth="725.0">
+          <AnchorPane maxHeight="120.0" minHeight="120.0" minWidth="0.0" prefHeight="120.0" prefWidth="725.0">
                <children>
-                  <TabPane layoutX="-1.0" prefHeight="113.0" prefWidth="727.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane layoutX="-1.0" maxHeight="120.0" minHeight="120.0" prefHeight="120.0" prefWidth="727.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="JSON Delivery">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="51.0" prefWidth="727.0">
                                  <children>
-                                    <TextField fx:id="JsonDestinationIP" layoutX="107.0" layoutY="48.0" prefHeight="26.0" prefWidth="107.0" text="25.12.56.47" />
-                                    <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination IP : " />
-                                    <TextField fx:id="JsonDestinationPort" layoutX="263.0" layoutY="49.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
-                                    <Text layoutX="228.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
-                                    <ToggleButton layoutX="487.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#clickDeliveryReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
-                                    <ToggleButton fx:id="DeliverySendingButton" layoutX="603.0" layoutY="12.0" mnemonicParsing="false" onAction="#clickDeliverySendingButton" prefHeight="61.0" prefWidth="110.0" text="Sending Data" />
-                                    <TextField fx:id="JsonSourceAddr" layoutX="106.0" layoutY="16.0" prefHeight="26.0" prefWidth="270.0" text="http://192.168.10.10/aircraftlist.json" />
-                                    <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Addr : " />
+                                    <TextField fx:id="JsonDestinationIP" layoutX="107.0" layoutY="52.0" prefHeight="26.0" prefWidth="107.0" text="25.12.56.47" />
+                                    <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination IP : " />
+                                    <TextField fx:id="JsonDestinationPort" layoutX="263.0" layoutY="53.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
+                                    <Text layoutX="228.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
+                                    <ToggleButton layoutX="487.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#clickDeliveryReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
+                                    <ToggleButton fx:id="DeliverySendingButton" layoutX="603.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickDeliverySendingButton" prefHeight="61.0" prefWidth="110.0" text="Sending Data" />
+                                    <TextField fx:id="JsonSourceAddr" layoutX="106.0" layoutY="20.0" prefHeight="26.0" prefWidth="270.0" text="http://192.168.10.10/aircraftlist.json" />
+                                    <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Addr : " />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -76,21 +76,28 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.0" prefWidth="727.0">
                                  <children>
-                                    <TextField fx:id="JsonReceiverPort" layoutX="49.0" layoutY="30.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
-                                    <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
-                                    <ToggleButton layoutX="174.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#clickReceiverReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
+                                    <TextField fx:id="JsonReceiverPort" layoutX="49.0" layoutY="34.0" prefHeight="26.0" prefWidth="107.0" text="5152" />
+                                    <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port : " />
+                                    <ToggleButton layoutX="174.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#clickReceiverReceiveButton" prefHeight="61.0" prefWidth="110.0" stylesheets="@buttonStyle.css" text="Receving Data" />
                                  </children></AnchorPane>
                         </content>
+                      </Tab>
+                      <Tab text="TBD">
+                      	<content>
+                      		<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.0" prefWidth="727.0">
+                      		<children>
+                      		</children></AnchorPane>
+                      	</content>
                       </Tab>
                     </tabs>
                   </TabPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="725.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="725.0">
                <children>
-                  <ScrollPane layoutY="-9.0" prefHeight="441.0" prefWidth="727.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="-9.0" minHeight="10.0" prefHeight="442.0" prefViewportHeight="300.0" prefWidth="725.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <TableView fx:id="aircraftTableView" prefHeight="439.0" prefWidth="723.0">
+                        <TableView fx:id="aircraftTableView" prefHeight="438.0" prefWidth="725.0" stylesheets="@tableViewStyle.css">
                           <columns>
                             <TableColumn fx:id="column1" editable="false" prefWidth="167.0" sortable="false" text="Time" />
                             <TableColumn fx:id="column2" editable="false" prefWidth="107.0" sortable="false" text="ICAO24" />

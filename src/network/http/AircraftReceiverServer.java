@@ -135,10 +135,16 @@ public class AircraftReceiverServer implements Runnable{
 						ObservableList<Aircraft> l_aircraftListView =  FXCollections.observableArrayList();
 						Iterator<String> l_itorator2 = fAircraftReceiveMap.keySet().iterator();
 						while(l_itorator2.hasNext()) {
-							l_aircraftListView.add(fAircraftReceiveMap.get(l_itorator2.next()));
+							Aircraft l_inListAC = fAircraftReceiveMap.get(l_itorator2.next());
+							if(!l_inListAC.equals(l_anAircraft)) {
+								l_inListAC.setIsNew(0);
+							}
+								
+							l_aircraftListView.add(l_inListAC);
 						}						
 						
 						fAircraftTableViewInThread.setItems(l_aircraftListView);
+						Thread.sleep(10);
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
@@ -150,6 +156,9 @@ public class AircraftReceiverServer implements Runnable{
 						e1.printStackTrace();
 					}					
 					System.out.println("Json Input Stream of Connection Thread in Server is closed");
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
 			
