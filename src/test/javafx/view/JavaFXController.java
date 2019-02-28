@@ -125,7 +125,7 @@ public class JavaFXController{
 	@FXML
 	public void clickDeliverySendingButton() {
 		
-		if(ADSBReceiveAndDeliverHttpJson.isJsonSending()) {			
+		if(!DeliverySendingButton.isSelected()) {			
 			ADSBReceiveAndDeliverHttpJson.setJsonSending(false);
 			try {
 				DeliverySendingButton.setStyle(null);
@@ -135,7 +135,7 @@ public class JavaFXController{
 				// TODO Auto-generated catch block
 				System.out.println("Delivery Socket Closed");
 			} catch(java.lang.NullPointerException e) {
-				System.out.println("Stream is not generated..");
+				System.out.println("Stream was not generated..");
 			} 
 		}else {			
 			ADSBReceiveAndDeliverHttpJson.setJsonSending(true);
@@ -150,7 +150,9 @@ public class JavaFXController{
 				DeliverySendingButton.setStyle("-fx-background-color: #3355ff;-fx-text-fill: #ffffff;");
 			} catch (NumberFormatException | IOException e) {
 				// TODO Auto-generated catch block
+				ADSBReceiveAndDeliverHttpJson.setJsonSending(false);
 				DeliverySendingButton.setStyle("-fx-background-color: #ff0000;-fx-text-fill: #ffffff;");
+				System.out.println("Stream is not generated..");
 			}
 			
 		}
