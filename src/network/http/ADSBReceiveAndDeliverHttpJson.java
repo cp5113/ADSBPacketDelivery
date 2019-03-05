@@ -84,7 +84,11 @@ public class ADSBReceiveAndDeliverHttpJson {
 		}
 		@Override
 		public void run() {
-			
+			try {
+				fAircraftListMap.clear();
+			}catch(Exception e) {
+				System.out.println("ListMap Cleaning is failed");
+			}
 			while(fProcessRun) {
 //				System.out.println("Working..");
 				try {
@@ -98,6 +102,8 @@ public class ADSBReceiveAndDeliverHttpJson {
 					while((l_Data=rd.read()) != -1) {
 						l_AllData.append((char) l_Data);					
 					}
+					rd.close();
+					is.close();
 					
 					// Parsing Json
 					Object[] l_dataObject = JsonParserSJ.parsingJsonWithDelaredFieldsInClass(Aircraft.class, l_AllData);
@@ -108,12 +114,14 @@ public class ADSBReceiveAndDeliverHttpJson {
 						l_aircraftList.put(((Aircraft)l_dataObject[i]).getHex(),(Aircraft)l_dataObject[i]);							
 					}
 					
-					
 					// Cleaning Aircraft List Map
 					Iterator<String> l_itorator1 = fAircraftListMap.keySet().iterator();
 					while(l_itorator1.hasNext()) {
 						String l_key = l_itorator1.next();
 						fAircraftListMap.get(l_key).setIsNew(0);
+//						if((new Date().getTime() - fAircraftListMap.get(l_key).getDat().getTime())/1000  > 3600*9+10) {
+//							fAircraftListMap.remove(l_key);
+//						}
 					}
 					
 				
@@ -126,7 +134,8 @@ public class ADSBReceiveAndDeliverHttpJson {
 								fAircraftListMap.get(l_loopKey).setIsNew(1);
 								if(fJsonSending) {
 									fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
-									fJsonSendingStream.flush();
+									fJsonSendingStream.flush();			
+									fJsonSendingStream.reset();
 								}
 							}else{
 								// Old trajectory
@@ -138,6 +147,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 							if(fJsonSending) {
 								fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 								fJsonSendingStream.flush();
+								fJsonSendingStream.reset();
 							}
 						}
 					}
