@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.example.org/ATSOL_AC"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:atsol="http://www.example.org/ATSOL_AC"
+	attributeFormDefault="qualified">
+	<annotation>
+		<documentation>ATSOL Trajectory</documentation>
+	</annotation>
+
+	<element name="Aircraft" type="atsol:AircraftSubType"></element>
+
+	<complexType name="AircraftSubType">
+		<sequence></sequence>
+		<attribute name="Time" type="atsol:TimeType" use="required">
+			<annotation>
+				<documentation>
+					yyyy-MM-dd HH:mm:ss ex) 2016-03-15 12:34:30
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Reg" type="string"></attribute>
+		<attribute name="Type" type="string"></attribute>
+		<attributeGroup ref="atsol:Geometry"></attributeGroup>
+		<attribute name="GroundSpeed" type="int"></attribute>
+		<attributeGroup ref="atsol:FlightPlan"></attributeGroup>
+	</complexType>
+
+	<simpleType name="AirportType">
+		<annotation>
+			<documentation>4 Letter ex) RKPC</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="4"></length>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="TimeType">
+		<restriction base="string">
+			<length value="19"></length>
+		</restriction>
+	</simpleType>
+
+	<attributeGroup name="Geometry">
+		<attribute name="Latitude" type="double"></attribute>
+		<attribute name="Longitude" type="double"></attribute>
+		<attribute name="Altitude" type="int"></attribute>
+	</attributeGroup>
+
+
+
+
+	<attributeGroup name="FlightPlan">
+				<attribute name="Callsign" type="string"></attribute>
+		<attribute name="Origination" type="atsol:AirportType"
+			use="optional">
+		</attribute>
+		<attribute name="Destination" type="atsol:AirportType"
+			use="optional">
+		</attribute>
+		<attribute name="Route" type="string"></attribute>
+		<attribute name="RwyArr" type="string" use="optional"></attribute>
+		<attribute name="RwyDep" type="string" use="optional"></attribute>
+		<attribute name="STAR" type="string" use="optional"></attribute>
+		<attribute name="IA" type="string" use="optional">
+			<annotation>
+				<documentation>
+					Instrument Approach Procedure
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="SID" type="string"></attribute>
+		<attribute name="SpotArr" type="string"></attribute>
+		<attribute name="SpotLT" type="string"></attribute>
+		<attribute name="SpotDep" type="string"></attribute>
+	</attributeGroup>
+
+
+    <element name="ATSOL" type="atsol:Trajectory"></element>
+    
+    <complexType name="Trajectory">
+    	<sequence>
+    		<element ref="atsol:Aircraft" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

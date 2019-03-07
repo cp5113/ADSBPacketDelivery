@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:ATSOL xmlns:ns1="http://www.example.org/ATSOL_AC">
+	<ns1:Aircraft ns1:Time="2014-11-23 15:24:30" ns1:Reg="HL1234" ns1:Type="B747" ns1:Latitude="37.1234" ns1:Longitude="126.1234" ns1:Altitude="28000" ns1:GroundSpeed="520" ns1:Callsign="KE1234" ns1:Origination="RKSS" ns1:Destination="RKPC" ns1:Route="SOT Y711 DOTOL" ns1:RwyArr="07" ns1:RwyDep="32R" ns1:STAR="DOTOL 2P" ns1:IA="ILS RWY 07" ns1:SID="SOT 1J" ns1:SpotArr="3" ns1:SpotLT="113" ns1:SpotDep="13"/>
+	<ns1:Aircraft ns1:Time="2014-11-23 15:24:30" ns1:Reg="HL4321" ns1:Type="B747" ns1:Latitude="37.4321" ns1:Longitude="126.4321" ns1:Altitude="17000" ns1:GroundSpeed="430" ns1:Callsign="KE4321" ns1:Origination="RKPC" ns1:Destination="RKSS" ns1:Route="KAMIT Y722 OLMEN" ns1:RwyArr="07" ns1:SID="KAMIT 1T" ns1:SpotArr="3">
+		<TT></TT></ns1:Aircraft>
+	<ns1:Aircraft></ns1:Aircraft>
+</ns1:ATSOL><!--comment-->

@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class AircraftReceiverServer implements Runnable{
 	private static Object 							lockSignal				= new Object();
 	private static ArrayList<ObjectInputStream>		objectInputStreamList   = new ArrayList<ObjectInputStream>();
 	private static TableView<Aircraft> 				aircraftTableView		;
+	private static SimpleDateFormat					simpleDateFormat		= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static synchronized	AircraftReceiverServer getInstance() {
 		if(instance!=null) {
 			instance = new AircraftReceiverServer();
@@ -122,13 +124,15 @@ public class AircraftReceiverServer implements Runnable{
 			System.out.println("Running...");
 				try {
 					while((l_anAircraft = (Aircraft) fJsonInputStream.readObject()) != null) {
-						
+						System.out.println("Current Time : " + simpleDateFormat.format(new Date()));
+						System.out.println("Aircraft     : " + l_anAircraft.toString());
+						System.out.println("Time Gap     : " + ((new Date().getTime() - l_anAircraft.getDat().getTime())/1000-(long)(3600*9)));
 						// Receive Aircraft						
 //						System.out.println("Data : " + l_anAircraft);
 						fAircraftReceiveMap.put(l_anAircraft.getHex(), l_anAircraft);
 						
 						// Cleaning 10 seconds
-						fAircraftReceiveMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
+						fAircraftReceiveMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+100);
 						
 						
 						// For Display in TableView
@@ -154,7 +158,8 @@ public class AircraftReceiverServer implements Runnable{
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}					
+					}	
+					e.printStackTrace();
 					System.out.println("Json Input Stream of Connection Thread in Server is closed");
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block

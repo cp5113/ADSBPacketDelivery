@@ -41,7 +41,7 @@ public class JavaFXTestDrive extends Application {
             JavaFXController  contoller = loader.getController();            
             contoller.setController(this);
             
-      
+            
             
             // 상위 레이아웃을 포함하는 scene을 보여준다.
             Scene scene = new Scene(rootLayout);

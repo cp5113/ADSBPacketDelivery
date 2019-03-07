@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.example.org/ATSOL_TRAJECTORY_20190306_V6" elementFormDefault="qualified" xmlns:p="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SJ="http://www.example.org/ATSOL_TRAJECTORY_20190306_V6">
+
+	<xsd:element name="ATSOL" type="SJ:Trajectory"></xsd:element>
+
+	<xsd:complexType name="Trajectory">
+		<xsd:sequence>
+			<xsd:element name="AircraftXML" type="SJ:AircraftXMLType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AircraftXMLType">
+		<xsd:sequence>
+			<xsd:element name="Generator" type="xsd:string"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+			<xsd:element name="Time" maxOccurs="1" minOccurs="1"
+				type="xsd:dateTime">
+			</xsd:element>
+			<xsd:element name="Reg" type="xsd:string" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="Type" type="xsd:string" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="Latitude" type="xsd:double" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="Longitude" type="xsd:double"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+			<xsd:element name="Altitude" type="xsd:int" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="GroundSpeed" type="xsd:int" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="LocationStatus"
+				type="SJ:LocationStatusType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+			<xsd:element name="Callsign" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="Origination" maxOccurs="1"
+				minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="4"></xsd:length>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Destination" maxOccurs="1"
+				minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="4"></xsd:length>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="STD" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="ETD" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="ATD" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="STA" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="ETA" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="ATA" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+
+			<xsd:element name="RouteAir" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+				<xsd:annotation></xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RouteGround" type="xsd:string"
+				maxOccurs="1" minOccurs="0">
+			</xsd:element>
+			<xsd:element name="RwyArr" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="RwyDep" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="STAR" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="IAP" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="SID" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="SpotArr" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="SpotLT" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="SpotDep" type="xsd:string" maxOccurs="1"
+				minOccurs="0">
+			</xsd:element>
+			<xsd:element name="ETC" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:simpleType name="LocationStatusType">
+    	<xsd:restriction base="xsd:string">
+    		<xsd:enumeration value="OnTaxiway"></xsd:enumeration>
+    		<xsd:enumeration value="OnRunway"></xsd:enumeration>    		
+    		<xsd:enumeration value="OnSID"></xsd:enumeration>
+    		<xsd:enumeration value="OnSTAR"></xsd:enumeration>
+    		<xsd:enumeration value="OnAPP"></xsd:enumeration>
+    		<xsd:enumeration value="OnATS"></xsd:enumeration>
+    		<xsd:enumeration value="InAirspace"></xsd:enumeration>
+    		
+    	</xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="TimeType">
+    	<xsd:restriction base="xsd:string">
+    		<xsd:length value="19"></xsd:length>
+    	</xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

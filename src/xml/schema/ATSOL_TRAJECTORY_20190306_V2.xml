@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ATSOL xmlns:ns2="http://www.example.org/ATSOL_TRAJECTORY_20190306_V2">
+	<ns2:Aircraft>
+		<ns2:Generator>KAU</ns2:Generator>
+		<ns2:Time>2014-11-23 15:24:30</ns2:Time>
+		<ns2:Reg>HL1234</ns2:Reg>
+		<ns2:Type>B747</ns2:Type>
+		<ns2:Latitude>37.1234</ns2:Latitude>
+		<ns2:Longitude>126.1234</ns2:Longitude>
+		<ns2:Altitude>28000</ns2:Altitude>
+		<ns2:GroundSpeed>520</ns2:GroundSpeed>
+		<ns2:Callsign>KE1234</ns2:Callsign>
+		<ns2:Origination>RKSS</ns2:Origination>
+		<ns2:Destination>RKPC</ns2:Destination>
+		<ns2:RouteAir>SOT Y711 DOTOL</ns2:RouteAir>
+		<ns2:RouteGround>13 204 268 483 257 48 100 138 268 </ns2:RouteGround>
+		<ns2:RwyArr>07</ns2:RwyArr>
+		<ns2:RwyDep>32R</ns2:RwyDep>
+		<ns2:STAR>DOTOL 2P</ns2:STAR>
+		<ns2:IAP>ILS RWY 07</ns2:IAP>
+		<ns2:SID>SOT 1J</ns2:SID>
+		<ns2:SpotArr>3</ns2:SpotArr>
+		<ns2:SpotLT>113</ns2:SpotLT>
+		<ns2:SpotDep>13</ns2:SpotDep>
+	</ns2:Aircraft>
+	<ns2:Aircraft>
+		<ns2:Generator>LETS</ns2:Generator>
+		<ns2:Time>2014-11-23 15:24:30</ns2:Time>
+		<ns2:Reg>HL4321</ns2:Reg>
+		<ns2:Type>B747</ns2:Type>
+		<ns2:Latitude>37.4321</ns2:Latitude>
+		<ns2:Longitude>126.4321</ns2:Longitude>
+		<ns2:Altitude>17000</ns2:Altitude>
+		<ns2:GroundSpeed>430</ns2:GroundSpeed>
+		<ns2:Callsign>KE4321</ns2:Callsign>
+		<ns2:Origination>RKPC</ns2:Origination>
+		<ns2:Destination>RKSS</ns2:Destination>
+		<ns2:RouteAir>KAMIT Y722 OLMEN</ns2:RouteAir>
+		<ns2:RwyDep>07</ns2:RwyDep>
+		<ns2:SID>KAMIT 1T</ns2:SID>
+		<ns2:SpotDep>3</ns2:SpotDep>
+	</ns2:Aircraft>
+</ns2:ATSOL>

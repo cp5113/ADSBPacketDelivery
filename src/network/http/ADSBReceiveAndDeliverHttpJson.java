@@ -31,6 +31,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 	private static volatile ADSBReceiveAndDeliverHttpJson 		instance			= new ADSBReceiveAndDeliverHttpJson();
 	private static ObjectOutputStream							fJsonSendingStream  = null;
 	private static ToggleButton									fDeliverySendingButton;
+	private static int											fworkingCount		= 0;
 	private TableView<Aircraft> 								fAircraftTableView;
 	
 	private ADSBReceiveAndDeliverHttpJson() {
@@ -89,6 +90,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 			}catch(Exception e) {
 				System.out.println("ListMap Cleaning is failed");
 			}
+			fworkingCount = 0;
 			while(fProcessRun) {
 //				System.out.println("Working..");
 				try {
@@ -134,8 +136,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 								fAircraftListMap.get(l_loopKey).setIsNew(1);
 								if(fJsonSending) {
 									fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
-									fJsonSendingStream.flush();			
-									fJsonSendingStream.reset();
+									fJsonSendingStream.flush();	
 								}
 							}else{
 								// Old trajectory
@@ -147,10 +148,14 @@ public class ADSBReceiveAndDeliverHttpJson {
 							if(fJsonSending) {
 								fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 								fJsonSendingStream.flush();
-								fJsonSendingStream.reset();
 							}
 						}
 					}
+					
+					if(fJsonSending && fworkingCount%100 == 0) {
+						fJsonSendingStream.reset();
+					}
+					
 					
 					// Remove Old Trajectory over 10 seconds
 					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.example.org/ATSOL_TRAJECTORY_20190306_V2" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:p="http://schemas.xmlsoap.org/wsdl/" xmlns:SJ="http://www.example.org/ATSOL_TRAJECTORY_20190306_V2">
+
+    <element name="ATSOL" type="SJ:Trajectory"></element>
+    
+    <complexType name="Trajectory">
+    	<sequence>
+    		<element name="Aircraft" type="SJ:AircraftType" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="AircraftType">
+    	<sequence>
+    		<element name="Generator" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="Time" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="string">
+    					<length value="19"></length>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="Reg" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="Type" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="Latitude" type="double" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="Longitude" type="double" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="Altitude" type="int" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="GroundSpeed" type="int" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="Callsign" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="Origination" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="string">
+    					<length value="4"></length>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="Destination" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="string">
+    					<length value="4"></length>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="RouteAir" type="string" maxOccurs="1"
+    			minOccurs="0">
+    			<annotation></annotation>
+    		</element>
+    		<element name="RouteGround" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="RwyArr" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="RwyDep" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="STAR" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="IAP" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="SID" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="SpotArr" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="SpotLT" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="SpotDep" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    	</sequence>
+    </complexType>
+</schema>

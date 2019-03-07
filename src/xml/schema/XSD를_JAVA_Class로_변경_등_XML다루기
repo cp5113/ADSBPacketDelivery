@@ -1,0 +1,8 @@
+
+
+1) XSD를 활용해서 JAVA Class 만들기
+https://riptutorial.com/ko/java/example/15890/%EA%B0%84%EB%8B%A8%ED%95%9C-xsd-%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-java-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1
+
+cmd.ex에서
+	"C:\Program Files\Java\jdk-9.0.4\bin\xjc" ATSOL_TRAJECTORY_20190306_V3.xsd
+입력

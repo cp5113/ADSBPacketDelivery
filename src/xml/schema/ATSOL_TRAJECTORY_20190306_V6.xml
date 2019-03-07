@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SJ:ATSOL xmlns:SJ="http://www.example.org/ATSOL_TRAJECTORY_20190306_V6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/ATSOL_TRAJECTORY_20190306_V6 ATSOL_TRAJECTORY_20190306_V6.xsd ">
+  <SJ:AircraftXML>
+    <SJ:Generator>SJ:Generator</SJ:Generator>
+    <SJ:Time>2001-12-31T12:00:00</SJ:Time>
+    <SJ:Reg>SJ:Reg</SJ:Reg>
+    <SJ:Type>SJ:Type</SJ:Type>
+    <SJ:Latitude>0.0</SJ:Latitude>
+    <SJ:Longitude>0.0</SJ:Longitude>
+    <SJ:Altitude>0</SJ:Altitude>
+    <SJ:GroundSpeed>0</SJ:GroundSpeed>
+    <SJ:LocationStatus>OnTaxiway</SJ:LocationStatus>
+    <SJ:Callsign>SJ:Callsign</SJ:Callsign>
+    <SJ:Origination>RKSI</SJ:Origination>
+    <SJ:Destination>RKPC</SJ:Destination>
+    <SJ:STD>2001-12-31T12:00:00</SJ:STD>
+    <SJ:ETD>2001-12-31T12:00:00</SJ:ETD>
+    <SJ:ATD>2001-12-31T12:00:00</SJ:ATD>
+    <SJ:STA>2001-12-31T12:00:00</SJ:STA>
+    <SJ:ETA>2001-12-31T12:00:00</SJ:ETA>
+    <SJ:ATA>2001-12-31T12:00:00</SJ:ATA>
+    <SJ:RouteAir>SJ:RouteAir</SJ:RouteAir>
+    <SJ:RouteGround>SJ:RouteGround</SJ:RouteGround>
+    <SJ:RwyArr>SJ:RwyArr</SJ:RwyArr>
+    <SJ:RwyDep>SJ:RwyDep</SJ:RwyDep>
+    <SJ:STAR>SJ:STAR</SJ:STAR>
+    <SJ:IAP>SJ:IAP</SJ:IAP>
+    <SJ:SID>SJ:SID</SJ:SID>
+    <SJ:SpotArr>SJ:SpotArr</SJ:SpotArr>
+    <SJ:SpotLT>SJ:SpotLT</SJ:SpotLT>
+    <SJ:SpotDep>SJ:SpotDep</SJ:SpotDep>
+    <SJ:ETC>SJ:ETC</SJ:ETC>
+  </SJ:AircraftXML>
+</SJ:ATSOL>
