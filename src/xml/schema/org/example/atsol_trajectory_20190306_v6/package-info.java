@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.example.org/ATSOL_TRAJECTORY_20190306_V6", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.example.atsol_trajectory_20190306_v6;
+package xml.schema.org.example.atsol_trajectory_20190306_v6;

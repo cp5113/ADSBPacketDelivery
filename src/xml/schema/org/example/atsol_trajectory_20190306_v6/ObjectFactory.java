@@ -6,7 +6,7 @@
 //
 
 
-package org.example.atsol_trajectory_20190306_v6;
+package xml.schema.org.example.atsol_trajectory_20190306_v6;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
