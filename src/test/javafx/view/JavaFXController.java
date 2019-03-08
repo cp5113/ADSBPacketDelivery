@@ -143,7 +143,7 @@ public class JavaFXController{
 			try {
 				SocketAddress l_socketAddress = new InetSocketAddress(JsonDestinationIP.getText(), Integer.parseInt(JsonDestinationPort.getText()));
 				DeliveryclinetSocket = new Socket();
-				DeliveryclinetSocket.connect(l_socketAddress,100);
+				DeliveryclinetSocket.connect(l_socketAddress,10000);
 //				l_ClinetSocket.getOutputStream()''
 				ObjectOutputStream l_objectOutputStream = new ObjectOutputStream(DeliveryclinetSocket.getOutputStream());
 				ADSBReceiveAndDeliverHttpJson.setfJsonSendingStream(l_objectOutputStream);
