@@ -92,9 +92,10 @@ public class ServerObjectTestDrive {
 			try {
 				
 				while((obj = fBr.readObject()) != null) {
-					Aircraft a = (Aircraft) obj;
+//					Aircraft a = (Aircraft) obj;
+					HashMap<Integer, Aircraft> a = (HashMap<Integer, Aircraft>) obj;
 					System.out.println("Data : " + a);
-					
+					System.out.println("Size : " + a.size());
 					
 					
 				}
