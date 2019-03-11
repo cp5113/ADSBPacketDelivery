@@ -1,12 +1,15 @@
 package test.network;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Date;
+import java.util.HashMap;
 
 import elements.Aircraft;
 
@@ -37,21 +40,56 @@ public class ClientObjectTestDrive {
 			fClinetSocket = new Socket(SERVER_IP, SERVER_PORT);
 			
 			// Stream
-			fPw = new ObjectOutputStream(fClinetSocket.getOutputStream());
+			fPw = new ObjectOutputStream(new BufferedOutputStream(fClinetSocket.getOutputStream()));
 			
-			BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-			String typing = null;
-			while((typing = keyboard.readLine()) !=null ) {
-				if(typing.equalsIgnoreCase("1")) {
-					System.out.println("WOW");
+			
+//			BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+//			String typing = null;
+			System.out.println("WOW");
+
+			int c = 0;
+			while(true) {
+//			while((typing = keyboard.readLine()) !=null ) {
+//				if(typing.equalsIgnoreCase("1")) {
+					System.out.println(c);
 //					int[] a = {1,2,3};
 //					fPw.writeObject(a);
-					fPw.writeObject(new Aircraft(new Date(),"Initial","Initial",0,0,0,(short) 0));
-					fPw.flush();
+//					fPw.writeObject(new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+//					Thread.sleep(300);
+					
+					
+					HashMap<Integer, Aircraft> aa= new HashMap<Integer, Aircraft>();
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
 
-				}
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+
+					aa.put(c++,new Aircraft(new Date(),"Initial","Initial",c,c,c,(short) 0));
+					fPw.writeObject(aa);
+					fPw.flush();
+					fPw.reset();
+					
+					Thread.sleep(100);
+
+					//					fPw.reset();
+					c++;
+					if (c%10==0) {
+//						Thread.sleep(3000);
+
+					}
+					
+//				}
+//			}
 			}
-			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
