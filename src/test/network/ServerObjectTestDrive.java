@@ -1,6 +1,7 @@
 package test.network;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -69,6 +70,7 @@ public class ServerObjectTestDrive {
 	private class ConnectionThread extends Thread{
 		Socket         		fSocket;
 		ObjectInputStream fBr     		= null;
+		
 		String         fClientInfo 	= null;
 		
 		public ConnectionThread(Socket a_socket, HashMap<String,Object> a_clientList) {
@@ -91,12 +93,15 @@ public class ServerObjectTestDrive {
 			
 			try {
 				
+				PrintWriter    fPw			= new PrintWriter(new OutputStreamWriter(fSocket.getOutputStream()));
+				
 				while((obj = fBr.readObject()) != null) {
 //					Aircraft a = (Aircraft) obj;
 					HashMap<Integer, Aircraft> a = (HashMap<Integer, Aircraft>) obj;
 					System.out.println("Data : " + a);
 					System.out.println("Size : " + a.size());
-					
+					fPw.println("Received");
+					fPw.flush();
 					
 				}
 				

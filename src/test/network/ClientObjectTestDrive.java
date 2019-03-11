@@ -41,7 +41,7 @@ public class ClientObjectTestDrive {
 			
 			// Stream
 			fPw = new ObjectOutputStream(new BufferedOutputStream(fClinetSocket.getOutputStream()));
-			
+			BufferedReader response = new BufferedReader(new InputStreamReader(fClinetSocket.getInputStream()));
 			
 //			BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
 //			String typing = null;
@@ -78,8 +78,10 @@ public class ClientObjectTestDrive {
 					fPw.flush();
 					fPw.reset();
 					
-					Thread.sleep(100);
-
+					
+					// read
+					System.out.println(response.readLine());
+					
 					//					fPw.reset();
 					c++;
 					if (c%10==0) {

@@ -30,6 +30,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 	private static Map<String,Aircraft>							fAircraftListMap	= new HashMap<String,Aircraft>();
 	private static volatile ADSBReceiveAndDeliverHttpJson 		instance			= new ADSBReceiveAndDeliverHttpJson();
 	private static ObjectOutputStream							fJsonSendingStream  = null;
+	private static BufferedReader 								fResponse 			= null;
 	private static ToggleButton									fDeliverySendingButton;
 	private static int											fworkingCount		= 0;
 	private TableView<Aircraft> 								fAircraftTableView;
@@ -137,7 +138,8 @@ public class ADSBReceiveAndDeliverHttpJson {
 								if(fJsonSending) {
 									fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 									fJsonSendingStream.flush();	
-//									fJsonSendingStream.reset();
+									System.out.println(fResponse.readLine());
+									fJsonSendingStream.reset();									
 								}
 							}else{
 								// Old trajectory
@@ -149,19 +151,28 @@ public class ADSBReceiveAndDeliverHttpJson {
 							if(fJsonSending) {
 								fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 								fJsonSendingStream.flush();
-//								fJsonSendingStream.reset();
+								System.out.println(fResponse.readLine());
+								fJsonSendingStream.reset();
 							}
 						}
 					}
 					
-					if(fJsonSending && fworkingCount%100 == 0) {
-						fJsonSendingStream.reset();
-					}
+					
+					
+
 					
 					
 					// Remove Old Trajectory over 10 seconds
 					fAircraftListMap.entrySet().removeIf(e ->(new Date().getTime()- e.getValue().getDat().getTime())/1000>3600*9+10);
 					
+					
+//					if(fJsonSending) {
+//						fJsonSendingStream.writeObject(fAircraftListMap);
+//					}
+					
+					if(fJsonSending && fworkingCount%100 == 0) {
+						fJsonSendingStream.reset();
+					}
 					// Insert AircraftList to Tableviewer
 					if(fAircraftTableView!=null) {
 						ObservableList<Aircraft> l_aircraftListView =  FXCollections.observableArrayList();
@@ -237,7 +248,12 @@ public class ADSBReceiveAndDeliverHttpJson {
 	public static synchronized void setAircraftListMap(Map<String, Aircraft> fAircraftListMap) {
 		ADSBReceiveAndDeliverHttpJson.fAircraftListMap = fAircraftListMap;
 	}
-	
+	public static synchronized void setfResponse(BufferedReader afResponse) {
+		fResponse = afResponse;
+	}
+	public static synchronized BufferedReader getfResponse() {
+		return fResponse;
+	}
 //	public static void main(String args[]) {
 //		ADSBReceiverHttpJson.getInstance().receiveADSBJson();
 //		

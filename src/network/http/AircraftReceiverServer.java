@@ -4,6 +4,8 @@ import java.io.BufferedInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -107,6 +109,7 @@ public class AircraftReceiverServer implements Runnable{
 		ObjectInputStream 					fJsonInputStream;
 		TableView<Aircraft> 				fAircraftTableViewInThread;
 		HashMap<String, Aircraft> 			fAircraftReceiveMap = new HashMap<String,Aircraft>();
+		PrintWriter							fInputStreamResponse;
 		public ConnectionThread(Socket a_socket,TableView<Aircraft> aAircraftTableViewInThread){
 			// Set Object
 			fSocket = a_socket;						
@@ -115,6 +118,7 @@ public class AircraftReceiverServer implements Runnable{
 			try {
 				fJsonBufferedInputStream = new BufferedInputStream(fSocket.getInputStream());
 				fJsonInputStream         = new ObjectInputStream(fJsonBufferedInputStream);
+				fInputStreamResponse     = new PrintWriter(new OutputStreamWriter(fSocket.getOutputStream()));
 				objectInputStreamList.add(fJsonInputStream);
 			}catch(Exception e) {
 				
@@ -152,7 +156,10 @@ public class AircraftReceiverServer implements Runnable{
 						}						
 						
 						fAircraftTableViewInThread.setItems(l_aircraftListView);
-						Thread.sleep(10);
+						
+						
+						// Response
+						fInputStreamResponse.println("Received");
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
@@ -165,7 +172,7 @@ public class AircraftReceiverServer implements Runnable{
 					}	
 					e.printStackTrace();
 					System.out.println("Json Input Stream of Connection Thread in Server is closed");
-				} catch (InterruptedException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

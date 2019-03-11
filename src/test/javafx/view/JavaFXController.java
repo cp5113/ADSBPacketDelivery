@@ -1,6 +1,8 @@
 package test.javafx.view;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -130,6 +132,7 @@ public class JavaFXController{
 			try {
 				DeliverySendingButton.setStyle(null);
 				ADSBReceiveAndDeliverHttpJson.getfJsonSendingStream().close();
+				ADSBReceiveAndDeliverHttpJson.getfResponse().close();
 				DeliveryclinetSocket.close();				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -146,7 +149,9 @@ public class JavaFXController{
 				DeliveryclinetSocket.connect(l_socketAddress,10000);
 //				l_ClinetSocket.getOutputStream()''
 				ObjectOutputStream l_objectOutputStream = new ObjectOutputStream(DeliveryclinetSocket.getOutputStream());
+				BufferedReader response = new BufferedReader(new InputStreamReader(DeliveryclinetSocket.getInputStream()));
 				ADSBReceiveAndDeliverHttpJson.setfJsonSendingStream(l_objectOutputStream);
+				ADSBReceiveAndDeliverHttpJson.setfResponse(response);
 				DeliverySendingButton.setStyle("-fx-background-color: #3355ff;-fx-text-fill: #ffffff;");
 			} catch (NumberFormatException | IOException e) {
 				// TODO Auto-generated catch block
