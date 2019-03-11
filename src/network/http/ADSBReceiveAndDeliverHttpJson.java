@@ -137,6 +137,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 								if(fJsonSending) {
 									fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 									fJsonSendingStream.flush();	
+//									fJsonSendingStream.reset();
 								}
 							}else{
 								// Old trajectory
@@ -148,6 +149,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 							if(fJsonSending) {
 								fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 								fJsonSendingStream.flush();
+//								fJsonSendingStream.reset();
 							}
 						}
 					}

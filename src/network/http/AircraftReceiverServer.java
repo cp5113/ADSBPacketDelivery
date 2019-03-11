@@ -1,11 +1,13 @@
 package network.http;
 
+import java.io.BufferedInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.nio.Buffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -101,6 +103,7 @@ public class AircraftReceiverServer implements Runnable{
 	
 	class ConnectionThread implements Runnable{
 		Socket         						fSocket;
+		BufferedInputStream					fJsonBufferedInputStream;
 		ObjectInputStream 					fJsonInputStream;
 		TableView<Aircraft> 				fAircraftTableViewInThread;
 		HashMap<String, Aircraft> 			fAircraftReceiveMap = new HashMap<String,Aircraft>();
@@ -110,7 +113,8 @@ public class AircraftReceiverServer implements Runnable{
 			fAircraftTableViewInThread = aAircraftTableViewInThread;
 			// Initial connection
 			try {
-				fJsonInputStream = new ObjectInputStream(fSocket.getInputStream());
+				fJsonBufferedInputStream = new BufferedInputStream(fSocket.getInputStream());
+				fJsonInputStream         = new ObjectInputStream(fJsonBufferedInputStream);
 				objectInputStreamList.add(fJsonInputStream);
 			}catch(Exception e) {
 				
