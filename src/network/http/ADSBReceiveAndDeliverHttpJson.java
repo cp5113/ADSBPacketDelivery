@@ -138,7 +138,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 								if(fJsonSending) {
 									fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 									fJsonSendingStream.flush();	
-									System.out.println("Sending Result : " + fResponse.readLine());
+									fResponse.readLine();
 									fJsonSendingStream.reset();									
 								}
 							}else{
@@ -151,7 +151,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 							if(fJsonSending) {
 								fJsonSendingStream.writeObject(l_aircraftList.get(l_loopKey));
 								fJsonSendingStream.flush();
-								System.out.println("Sending Result : " + fResponse.readLine());
+								fResponse.readLine();
 								fJsonSendingStream.reset();
 							}
 						}
