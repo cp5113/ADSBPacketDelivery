@@ -186,7 +186,7 @@ public class ADSBReceiveAndDeliverHttpJson {
 					
 					
 					// Sleep
-					Thread.sleep((long) (fReciveRate*1000));
+					Thread.sleep((long) (fReciveRate*100));
 				}catch(SocketException e) {
 					System.out.println("Socket Lost in Delivery Client");
 					fDeliverySendingButton.fire();
