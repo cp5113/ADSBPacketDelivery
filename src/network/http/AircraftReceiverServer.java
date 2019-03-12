@@ -132,9 +132,11 @@ public class AircraftReceiverServer implements Runnable{
 			System.out.println("Running...");
 				try {
 					while((l_anAircraft = (Aircraft) fJsonInputStream.readObject()) != null) {
-						System.out.println("Current Time : " + simpleDateFormat.format(new Date()));
-						System.out.println("Aircraft     : " + l_anAircraft.toString());
-						System.out.println("Time Gap     : " + ((new Date().getTime() - l_anAircraft.getDat().getTime())/1000-(long)(3600*9)));
+//						System.out.println("Current Time : " + simpleDateFormat.format(new Date()));
+//						System.out.println("Aircraft     : " + l_anAircraft.toString());
+//						System.out.println("Time Gap     : " + ((new Date().getTime() - l_anAircraft.getDat().getTime())/1000-(long)(3600*9)));
+						
+						
 						// Receive Aircraft						
 //						System.out.println("Data : " + l_anAircraft);
 						fAircraftReceiveMap.put(l_anAircraft.getHex(), l_anAircraft);
@@ -159,14 +161,17 @@ public class AircraftReceiverServer implements Runnable{
 						
 						
 						// Response
-						System.out.println("Sending Response");
+//						System.out.println("Sending Response");
 						fInputStreamResponse.println("Received");
-						System.out.println("Sending Response is done");
+						fInputStreamResponse.flush();
+//						System.out.println("Sending Response is done");
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					try {
 						fJsonInputStream.close();
+						fJsonBufferedInputStream.close();
+						fInputStreamResponse.close();
 						fSocket.close();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
