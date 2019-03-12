@@ -159,7 +159,9 @@ public class AircraftReceiverServer implements Runnable{
 						
 						
 						// Response
+						System.out.println("Sending Response");
 						fInputStreamResponse.println("Received");
+						System.out.println("Sending Response is done");
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
