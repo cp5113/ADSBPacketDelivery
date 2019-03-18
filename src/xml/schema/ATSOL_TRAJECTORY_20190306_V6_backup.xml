@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SJ:ATSOL xmlns:SJ="http://www.example.org/ATSOL_TRAJECTORY_20190306_V6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/ATSOL_TRAJECTORY_20190306_V6 ATSOL_TRAJECTORY_20190306_V6.xsd ">
+  <SJ:AircraftXML>
+    <SJ:Generator>SJ:Generator</SJ:Generator> <!--Generator Info. Ex) ATSOL or LETS -->
+    <SJ:Time>2001-12-31T12:00:00</SJ:Time><!--Time of this Trajectory-->
+    <SJ:Reg>SJ:Reg</SJ:Reg><!--Reg Number : HL1234-->
+    <SJ:Type>SJ:Type</SJ:Type> <!--AC Type : B737-->
+    <SJ:Latitude>0.0</SJ:Latitude><!--Latitude : 37.1234-->
+    <SJ:Longitude>0.0</SJ:Longitude><!--Longitude : 123.1234 -->
+    <SJ:Altitude>0</SJ:Altitude><!--Altitude(ft) : 23000-->
+    <SJ:GroundSpeed>0</SJ:GroundSpeed><!--Ground Speed(kts) : 320 -->
+    <SJ:LocationStatus>OnTaxiway</SJ:LocationStatus> <!--Location info : onTaxiway,onRunway, .. etcs-->
+    <SJ:Callsign>SJ:Callsign</SJ:Callsign><!--Callsign : KAL1234-->
+    <SJ:Origination>RKSI</SJ:Origination><!--Origin Airport : RKSI-->
+    <SJ:Destination>RKPC</SJ:Destination><!--Destination Airport : RKPC -->
+    <SJ:STD>2001-12-31T12:00:00</SJ:STD><!--Scheduled Time Departure -->
+    <SJ:ETD>2001-12-31T12:00:00</SJ:ETD><!--Estimated Time Departure -->
+    <SJ:ATD>2001-12-31T12:00:00</SJ:ATD><!--Actual Time Departure-->
+    <SJ:STA>2001-12-31T12:00:00</SJ:STA>
+    <SJ:ETA>2001-12-31T12:00:00</SJ:ETA>
+    <SJ:ATA>2001-12-31T12:00:00</SJ:ATA>
+    <SJ:RouteAir>SJ:RouteAir</SJ:RouteAir>
+    <SJ:RouteGround>SJ:RouteGround</SJ:RouteGround>
+    <SJ:RwyArr>SJ:RwyArr</SJ:RwyArr>
+    <SJ:RwyDep>SJ:RwyDep</SJ:RwyDep>
+    <SJ:STAR>SJ:STAR</SJ:STAR>
+    <SJ:IAP>SJ:IAP</SJ:IAP>
+    <SJ:SID>SJ:SID</SJ:SID>
+    <SJ:SpotArr>SJ:SpotArr</SJ:SpotArr>
+    <SJ:SpotLT>SJ:SpotLT</SJ:SpotLT>
+    <SJ:SpotDep>SJ:SpotDep</SJ:SpotDep>
+    <SJ:ETC>SJ:ETC</SJ:ETC>
+  </SJ:AircraftXML>
+</SJ:ATSOL>

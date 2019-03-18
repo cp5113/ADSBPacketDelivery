@@ -30,6 +30,7 @@ public class UDPClientTestDrive {
 				ObjectOutputStream	oos	  = new ObjectOutputStream(bos);
 				
 				oos.writeObject(new Aircraft(new Date(),"Initial","Initial",c,c,c++,(short) 0));
+				System.out.println(c);
 				oos.flush();
 
 				//Create Packet

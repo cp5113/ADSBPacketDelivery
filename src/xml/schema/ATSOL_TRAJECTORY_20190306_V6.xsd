@@ -60,10 +60,13 @@
 			<xsd:element name="STD" type="xsd:dateTime" maxOccurs="1"
 				minOccurs="1">
 			</xsd:element>
+			<xsd:element name="AOBT" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
 			<xsd:element name="ETD" type="xsd:dateTime" maxOccurs="1"
 				minOccurs="1">
 			</xsd:element>
-			<xsd:element name="ATD" type="xsd:dateTime" maxOccurs="1"
+			<xsd:element name="ATOT" type="xsd:dateTime" maxOccurs="1"
 				minOccurs="1">
 			</xsd:element>
 			<xsd:element name="STA" type="xsd:dateTime" maxOccurs="1"
@@ -72,7 +75,10 @@
 			<xsd:element name="ETA" type="xsd:dateTime" maxOccurs="1"
 				minOccurs="1">
 			</xsd:element>
-			<xsd:element name="ATA" type="xsd:dateTime" maxOccurs="1"
+			<xsd:element name="ALDT" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="AIBT" type="xsd:dateTime" maxOccurs="1"
 				minOccurs="1">
 			</xsd:element>
 
@@ -113,6 +119,7 @@
 
     <xsd:simpleType name="LocationStatusType">
     	<xsd:restriction base="xsd:string">
+    		<xsd:enumeration value="OnGate"></xsd:enumeration>
     		<xsd:enumeration value="OnTaxiway"></xsd:enumeration>
     		<xsd:enumeration value="OnRunway"></xsd:enumeration>    		
     		<xsd:enumeration value="OnSID"></xsd:enumeration>
